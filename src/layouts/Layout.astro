@@ -1,0 +1,112 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = "GKA", description = "Landing page" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100"
+  >
+    <!-- Header -->
+    <header
+      class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur border-b border-gray-200 dark:border-gray-800"
+    >
+      <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="/" class="font-semibold text-lg sm:text-xl">GKA</a>
+
+          <!-- Desktop nav -->
+          <nav class="hidden md:flex items-center gap-6 text-sm">
+            <a class="hover:text-blue-600" href="/about">About</a>
+            <a class="hover:text-blue-600" href="/services">Services</a>
+            <a class="hover:text-blue-600" href="/contact">Contact</a>
+          </nav>
+
+          <!-- Mobile toggle -->
+          <button
+            class="md:hidden inline-flex items-center rounded-md border border-gray-300 px-3 py-2 text-sm"
+            id="menuBtn"
+            aria-expanded="false"
+            aria-controls="mobileNav"
+          >
+            Menu
+          </button>
+        </div>
+
+        <!-- Mobile nav -->
+        <div id="mobileNav" class="md:hidden hidden pb-4">
+          <nav class="flex flex-col gap-2 text-sm">
+            <a
+              class="py-2 px-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+              href="/about">About</a
+            >
+            <a
+              class="py-2 px-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+              href="/services">Services</a
+            >
+            <a
+              class="py-2 px-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+              href="/contact">Contact</a
+            >
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="flex-1">
+      <section
+        class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
+      >
+        <!-- Example responsive heading -->
+        <h1 class="text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight">
+          <slot name="title" />
+        </h1>
+
+        <!-- Content area -->
+        <div class="mt-6">
+          <slot />
+        </div>
+
+        <!-- Example responsive grid -->
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <slot name="grid" />
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 dark:border-gray-800">
+      <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 py-8">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm"
+        >
+          <div class="col-span-1">© {new Date().getFullYear()} GKA</div>
+          <div>Links</div>
+          <div>Contact</div>
+          <div>Social</div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById("menuBtn");
+      const nav = document.getElementById("mobileNav");
+      btn?.addEventListener("click", () => {
+        nav?.classList.toggle("hidden");
+        const expanded = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", (!expanded).toString());
+      });
+    </script>
+  </body>
+</html>
