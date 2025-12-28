@@ -21,7 +21,7 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
         <img
           src={redG.src}
           alt=""
-          class="w-26 sm:w-24 md:w-35 lg:w-57.5 h-auto object-contain pointer-events-none shrink-0"
+          class="w-20 sm:w-24 md:w-35 lg:w-57.5 h-auto object-contain pointer-events-none shrink-0"
         />
 
         <!-- Text Container - absolute positioning for overlap -->
@@ -101,11 +101,11 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
     tl.to(
       "#gka-logo-container",
       {
-        left: isMobile ? "0.5rem" : isTablet ? "0.75rem" : "1rem",
+        left: isMobile ? "3rem" : isTablet ? "0.75rem" : "1rem",
         top: isMobile ? "0.5rem" : isTablet ? "1rem" : "2rem",
         x: 0,
         y: 0,
-        scale: isMobile ? 0.6 : isTablet ? 0.7 : 0.8,
+        scale: isMobile ? 1 : isTablet ? 0.7 : 0.8,
         duration: isMobile ? 0.8 : 1,
         ease: "power2.inOut",
       },
