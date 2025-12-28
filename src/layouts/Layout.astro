@@ -56,14 +56,20 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               class="text-xl font-kufam uppercase sm:text-6xl font-semibold"
             >
             </p>
-            <span class="inline-block">Contact</span>
-            <a
-              id="email-link"
-              href={`mailto:${email}`}
-              class="inline-block text-blue-600 dark:text-blue-400 font-medium opacity-0"
-            >
-              {email}
-            </a>
+            <div id="contact-container" class="opacity-0">
+              <span
+                id="contact-label"
+                class="inline-block text-sm sm:text-base uppercase tracking-wider opacity-0"
+                >Contact</span
+              >
+              <a
+                id="email-link"
+                href={`mailto:${email}`}
+                class="block text-blue-600 dark:text-blue-400 font-medium mt-1 opacity-0"
+              >
+                {email}
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -83,34 +89,78 @@ import kufamFont from "../styles/fonts/kufam.woff2";
 
       document.addEventListener("DOMContentLoaded", () => {
         const comingSoonText = document.getElementById("coming-soon-text");
+        const contactContainer = document.getElementById("contact-container");
+        const contactLabel = document.getElementById("contact-label");
         const emailLink = document.getElementById("email-link");
 
-        if (comingSoonText && emailLink) {
-          // Typing animation for "Coming soon"
-          gsap.to(comingSoonText, {
+        if (comingSoonText && contactContainer && contactLabel && emailLink) {
+          const tl = gsap.timeline();
+
+          // 1. Typing animation for "Coming soon"
+          tl.to(comingSoonText, {
             duration: 2,
             text: "Coming soon",
             delay: 4.2,
             ease: "none",
           });
 
-          // Fade in email with pulse
-          gsap.to(emailLink, {
-            opacity: 1,
-            duration: 0.8,
-            delay: 5,
-            ease: "power2.out",
-          });
+          // 2. Fade in contact container
+          tl.to(
+            contactContainer,
+            {
+              opacity: 1,
+              duration: 0.3,
+            },
+            "+=0.5"
+          );
 
-          // Pulse animation for email
-          gsap.to(emailLink, {
-            scale: 1.03,
-            duration: 1.8,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut",
-            delay: 5.8,
-          });
+          // 3. Slide in "Contact" label from left with rotation
+          tl.fromTo(
+            contactLabel,
+            {
+              opacity: 0,
+              x: -30,
+              rotation: -5,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              rotation: 0,
+              duration: 0.6,
+              ease: "back.out(1.7)",
+            }
+          );
+
+          // 4. Slide in email from right with slight bounce
+          tl.fromTo(
+            emailLink,
+            {
+              opacity: 0,
+              x: 30,
+              y: -10,
+            },
+            {
+              opacity: 1,
+              x: 0,
+              y: 0,
+              duration: 0.8,
+              ease: "elastic.out(1, 0.5)",
+            },
+            "-=0.3"
+          );
+
+          // 5. Gentle continuous pulse on email
+          tl.to(
+            emailLink,
+            {
+              scale: 1.05,
+              duration: 2,
+              repeat: -1,
+              yoyo: true,
+              ease: "sine.inOut",
+            },
+            "+=0.5"
+          );
         }
       });
     </script>
