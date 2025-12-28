@@ -23,6 +23,23 @@ html {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Apply fonts */
+body {
+    font-family: "Kufam", system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Accunthisa", "Kufam", system-ui, sans-serif;
+}
+
+/* ...existing code... */
+
+/* EN→AL crossfade */
 @keyframes logo-en-out {
     0% {
         opacity: 1;
@@ -51,38 +68,43 @@ html {
     animation: logo-al-in 1600ms ease-in-out forwards;
 }
 
-@keyframes hero-move {
-
-    /* starts centered via translate(-50%, -50%), then drifts up-left */
+/* Move the pair from center to top-left after the swap */
+@keyframes pair-to-top-left {
     0% {
+        left: 50%;
+        top: 50%;
         transform: translate(-50%, -50%);
     }
 
     100% {
-        transform: translate(-50%, -50%) translate(-22vw, -14vh);
+        left: 0%;
+        top: 0%;
+        transform: translate(0, 0);
     }
 }
 
-.animate-hero-move {
-    animation: hero-move 1400ms 1600ms ease-in-out forwards;
+.animate-pair-to-top-left {
+    animation: pair-to-top-left 1400ms 1600ms ease-in-out forwards;
 }
 
+/* MTKS fade-in at top-right */
 @keyframes mtks-fade-in {
     0% {
         opacity: 0;
-        transform: translateX(24px);
+        transform: translate(12px, -8px);
     }
 
     100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translate(0, 0);
     }
 }
 
 .animate-mtks-fade-in {
-    animation: mtks-fade-in 1200ms 2200ms ease-out forwards;
+    animation: mtks-fade-in 900ms ease-out forwards;
 }
 
+/* Text fade-up */
 @keyframes fade-in-up {
     0% {
         opacity: 0;
@@ -99,6 +121,7 @@ html {
     animation: fade-in-up 700ms ease-out forwards;
 }
 
+/* Subtle email pulse */
 @keyframes pulse-slow {
 
     0%,
@@ -115,11 +138,12 @@ html {
     animation: pulse-slow 1800ms ease-in-out infinite;
 }
 
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
     .animate-logo-en-out,
     .animate-logo-al-in,
-    .animate-hero-move,
+    .animate-pair-to-top-left,
     .animate-mtks-fade-in,
     .animate-fade-in-up,
     .animate-pulse-slow {
