@@ -14,22 +14,24 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
     <!-- GKA Logo Container -->
     <div
       id="gka-logo-container"
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[280px] sm:max-w-md md:w-125 lg:w-150"
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-70 sm:max-w-md md:w-125 lg:w-150"
     >
-      <div class="relative flex items-center">
+      <div class="relative flex items-center overflow-hidden">
         <!-- Static red G - always visible -->
         <img
           src={redG.src}
           alt=""
-          class="w-20 sm:w-28 md:w-35 lg:w-57.5 h-auto object-contain pointer-events-none shrink-0"
+          class="w-16 sm:w-24 md:w-35 lg:w-57.5 h-auto object-contain pointer-events-none shrink-0"
         />
 
-        <!-- Text Container - positioned to the right of the G -->
-        <div class="ml-0 flex-1 flex items-center font-mulish font-medium">
+        <!-- Text Container - absolute positioning for overlap -->
+        <div
+          class="absolute left-12 sm:left-20 md:left-28 lg:left-35 font-mulish font-medium"
+        >
           <!-- English text - fades out -->
           <div
             id="text-en"
-            class="-ml-20 sm:-ml-28 md:-ml-35 -mt-1 sm:-mt-2 md:-mt-3 text-black text-sm sm:text-xl md:text-2xl lg:text-[1.8rem]"
+            class="text-black text-xs sm:text-base md:text-xl lg:text-[1.8rem] whitespace-nowrap"
             style="letter-spacing: 0.05em; line-height: 1;"
           >
             <div class="capitalize">National</div>
@@ -40,7 +42,7 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
           <!-- Albanian text - fades in -->
           <div
             id="text-al"
-            class="-ml-17 sm:-ml-24 md:-ml-30 -mt-1 sm:-mt-2 md:-mt-3 text-black opacity-0 text-sm sm:text-xl md:text-2xl lg:text-[1.8rem]"
+            class="absolute top-0 left-0 text-black opacity-0 text-xs sm:text-base md:text-xl lg:text-[1.8rem] whitespace-nowrap"
             style="letter-spacing: 0.05em; line-height: 1;"
           >
             <div class="capitalize">Galeria</div>
@@ -56,7 +58,7 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
       id="mtks-logo"
       src={mtksLogo.src}
       alt="MTKS logo"
-      class="absolute top-4 sm:top-8 md:top-15 right-2 sm:right-4 w-20 sm:w-28 md:w-40 lg:w-66 h-auto opacity-0"
+      class="absolute top-4 sm:top-8 md:top-15 right-2 sm:right-4 w-16 sm:w-24 md:w-36 lg:w-66 h-auto opacity-0"
     />
   </div>
 </Layout>
@@ -70,21 +72,29 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
 
     const tl = gsap.timeline();
 
-    // 1. Fade out English text
+    // 1. Fade out English text with slide left
     tl.to("#text-en", {
       opacity: 0,
+      x: -20,
       duration: isMobile ? 0.4 : 0.6,
       delay: isMobile ? 1 : 1.5,
+      ease: "power2.in",
     });
 
-    // 2. Fade in Albanian text
-    tl.to(
+    // 2. Fade in Albanian text with slide right
+    tl.fromTo(
       "#text-al",
       {
-        opacity: 1,
-        duration: isMobile ? 0.4 : 0.6,
+        opacity: 0,
+        x: 20,
       },
-      "+=0.3"
+      {
+        opacity: 1,
+        x: 0,
+        duration: isMobile ? 0.4 : 0.6,
+        ease: "power2.out",
+      },
+      "-=0.2"
     );
 
     // 3. Move the entire GKA logo container to top-left with responsive positioning
@@ -95,7 +105,7 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
         top: isMobile ? "0.5rem" : isTablet ? "1rem" : "2rem",
         x: 0,
         y: 0,
-        scale: isMobile ? 0.65 : isTablet ? 0.7 : 0.8,
+        scale: isMobile ? 0.6 : isTablet ? 0.7 : 0.8,
         duration: isMobile ? 0.8 : 1,
         ease: "power2.inOut",
       },
