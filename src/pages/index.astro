@@ -25,7 +25,7 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
         />
 
         <!-- Text Container - positioned to the right of the G -->
-        <div class="ml-0 flex-1 flex items-center font-mulish">
+        <div class="ml-0 flex-1 flex items-center font-mulish font-medium">
           <!-- English text - fades out -->
           <div
             id="text-en"
@@ -40,7 +40,7 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
           <!-- Albanian text - fades in -->
           <div
             id="text-al"
-            class="-ml-27 font-light -mt-3 text-black opacity-0"
+            class="-ml-30 font-light -mt-3 text-black opacity-0"
             style="font-size: 1.8rem; letter-spacing: 0.05em; line-height: 1.2;"
           >
             <div class="capitalize">Galeria</div>
@@ -60,16 +60,6 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
     />
   </div>
 </Layout>
-
-<style>
-  /* Import a condensed font for better match */
-  @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap");
-
-  #text-en,
-  #text-al {
-    font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
-  }
-</style>
 
 <script>
   import { gsap } from "gsap";
