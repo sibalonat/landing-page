@@ -10,6 +10,8 @@ const {
   email = "contact@example.com",
 } = Astro.props;
 import "../styles/global.css";
+import accunthisaFont from "../assets/fonts/accunthisa.woff2";
+import kufamFont from "../assets/fonts/kufam.woff2";
 ---
 
 <!doctype html>
@@ -21,14 +23,14 @@ import "../styles/global.css";
     <title>{title}</title>
     <link
       rel="preload"
-      href="/fonts/accunthisa.woff2"
+      href={accunthisaFont}
       as="font"
       type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="/fonts/kufam.woff2"
+      href={kufamFont}
       as="font"
       type="font/woff2"
       crossorigin
