@@ -1,5 +1,5 @@
 /* Import Roboto Condensed for logo text matching */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import "tailwindcss";
 
 /* Custom fonts */
@@ -152,5 +152,5 @@ h6 {
 @theme {
     --font-kufam: "Kufam", sans-serif;
     --font-accunthisa: "Accunthisa", "Kufam", sans-serif;
-    --font-roboto-condensed: 'Roboto Condensed', sans-serif;
+    --font-mulish: 'Mulish', sans-serif;
 }
