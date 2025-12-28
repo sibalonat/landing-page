@@ -19,7 +19,6 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <!-- Preload fonts -->
     <link
       rel="preload"
       href="/fonts/accunthisa.woff2"
@@ -39,29 +38,25 @@ import "../styles/global.css";
   <body
     class="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100"
   >
-    <!-- Hero (65vh, golden-ratio inner box) -->
     <main class="flex-1">
+      <!-- ~65vh hero with golden-ratio inner box -->
       <section class="min-h-[65vh] flex items-center justify-center relative">
         <div class="relative w-full max-w-5xl aspect-[1.618]">
-          <!-- Inject logos: EN→AL swap, then drift to top-left; MTKS fades in to the right -->
-          <div
-            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 animate-hero-move"
-          >
-            <slot name="logos" />
-          </div>
+          <!-- Logos injected by page -->
+          <slot name="logos" />
 
           <!-- Coming soon + animated email -->
           <div
             class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center space-y-2"
           >
             <p
-              class="text-xl sm:text-2xl font-semibold opacity-0 animate-fade-in-up [animation-delay:2600ms]"
+              class="text-xl sm:text-2xl font-semibold opacity-0 animate-fade-in-up [animation-delay:4200ms]"
             >
               Coming soon
             </p>
             <a
               href={`mailto:${email}`}
-              class="inline-block text-blue-600 dark:text-blue-400 font-medium opacity-0 animate-fade-in-up animate-pulse-slow [animation-delay:3400ms]"
+              class="inline-block text-blue-600 dark:text-blue-400 font-medium opacity-0 animate-fade-in-up animate-pulse-slow [animation-delay:5000ms]"
             >
               {email}
             </a>
@@ -69,7 +64,6 @@ import "../styles/global.css";
         </div>
       </section>
 
-      <!-- Optional extra content -->
       <section
         class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
       >

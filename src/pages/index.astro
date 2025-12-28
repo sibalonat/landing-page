@@ -5,49 +5,32 @@ import alLogo from "../assets/gka/al-logo.svg";
 import mtksLogo from "../assets/mtks/mtks-logo.svg";
 ---
 
-<Layout title="Home" description="Landing page">
-  <section class="min-h-[65vh] flex items-center justify-center relative">
-    <div class="relative w-full max-w-5xl aspect-[1.618]">
-      <!-- Logos block that starts centered, then moves to top-left -->
-      <div
-        class="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-8 animate-hero-move"
-      >
-        <div class="relative w-40 sm:w-52 h-40 sm:h-52">
-          <img
-            src={enLogo.src}
-            alt="GKA English logo"
-            class="absolute inset-0 w-full h-full object-contain animate-logo-en-out"
-          />
-          <img
-            src={alLogo.src}
-            alt="GKA Albanian logo"
-            class="absolute inset-0 w-full h-full object-contain animate-logo-al-in"
-          />
-        </div>
-
-        <img
-          src={mtksLogo.src}
-          alt="MTKS logo"
-          class="w-28 sm:w-36 h-auto opacity-0 animate-mtks-fade-in"
-        />
-      </div>
-
-      <!-- Coming soon + email -->
-      <div
-        class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center space-y-2"
-      >
-        <p
-          class="text-xl sm:text-2xl font-semibold opacity-0 animate-fade-in-up [animation-delay:2600ms]"
-        >
-          Coming soon
-        </p>
-        <a
-          href="mailto:contact@example.com"
-          class="inline-block text-blue-600 dark:text-blue-400 font-medium opacity-0 animate-fade-in-up animate-pulse-slow [animation-delay:3400ms]"
-        >
-          contact@example.com
-        </a>
-      </div>
+<Layout title="Home" description="Landing page" email="contact@example.com">
+  <!-- Logos slot content -->
+  <div slot="logos" class="absolute inset-0">
+    <!-- EN→AL pair: start centered, then move to top-left -->
+    <div
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-52 h-40 sm:h-52 animate-pair-to-top-left"
+    >
+      <img
+        src={enLogo.src}
+        alt="GKA English logo"
+        class="absolute inset-0 w-full h-full object-contain animate-logo-en-out"
+      />
+      <img
+        src={alLogo.src}
+        alt="GKA Albanian logo"
+        class="absolute inset-0 w-full h-full object-contain animate-logo-al-in"
+      />
     </div>
-  </section>
+
+    <!-- MTKS: fade in at top-right after the pair moves -->
+    <img
+      src={mtksLogo.src}
+      alt="MTKS logo"
+      class="absolute top-0 right-0 w-28 sm:w-36 h-auto opacity-0 animate-mtks-fade-in [animation-delay:2400ms]"
+    />
+  </div>
+
+  <!-- Optional extra content goes here -->
 </Layout>
