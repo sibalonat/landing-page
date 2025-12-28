@@ -1,16 +1,22 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Home" description="Landing page">
+  <h1
+    slot="title"
+    class="text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight"
+  >
+    Astro
+  </h1>
+
+  <p class="mt-4 text-base sm:text-lg lg:text-xl">
+    Tailwind classes make this responsive across breakpoints.
+  </p>
+
+  <div slot="grid">
+    <div class="rounded-lg border p-4">Card 1</div>
+    <div class="rounded-lg border p-4">Card 2</div>
+    <div class="rounded-lg border p-4">Card 3</div>
+  </div>
+</Layout>
