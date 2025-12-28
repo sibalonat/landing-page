@@ -150,3 +150,10 @@ h6 {
         animation: none !important;
     }
 }
+
+@theme {
+    font-serifs: {
+        kufam: 'Kufam, system-ui, sans-serif',
+            accunthisa: 'Accunthisa, Kufam, system-ui, sans-serif',
+    }
+}
