@@ -10,37 +10,39 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
     <!-- GKA Logo Container -->
     <div
       id="gka-logo-container"
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-52"
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-125 sm:w-150"
     >
-      <!-- Static red G - always visible -->
-      <img
-        src={redG.src}
-        alt=""
-        class="absolute inset-0 w-full h-auto object-contain pointer-events-none"
-      />
+      <div class="relative flex items-center">
+        <!-- Static red G - always visible -->
+        <img
+          src={redG.src}
+          alt=""
+          class="w-35 sm:w-42.5 h-auto object-contain pointer-events-none shrink-0"
+        />
 
-      <!-- Text Container -->
-      <div class="absolute inset-0 flex items-center justify-center">
-        <!-- English text - fades out -->
-        <div
-          id="text-en"
-          class="absolute text-center font-bold text-red-600 uppercase whitespace-nowrap"
-          style="font-size: 0.65rem; letter-spacing: 0.02em;"
-        >
-          <div>National</div>
-          <div style="margin-top: -0.15em;">Gallery</div>
-          <div style="margin-top: -0.15em;">of Arts</div>
-        </div>
+        <!-- Text Container - positioned to the right of the G -->
+        <div class="ml-4 flex-1">
+          <!-- English text - fades out -->
+          <div
+            id="text-en"
+            class="font-bold text-black uppercase"
+            style="font-size: 1.5rem; letter-spacing: 0.05em; line-height: 0.9;"
+          >
+            <div>National</div>
+            <div>Gallery</div>
+            <div>of Arts</div>
+          </div>
 
-        <!-- Albanian text - fades in -->
-        <div
-          id="text-al"
-          class="absolute text-center font-bold text-red-600 uppercase opacity-0 whitespace-nowrap"
-          style="font-size: 0.65rem; letter-spacing: 0.02em;"
-        >
-          <div>Galeria</div>
-          <div style="margin-top: -0.15em;">Kombëtare</div>
-          <div style="margin-top: -0.15em;">e Arteve</div>
+          <!-- Albanian text - fades in -->
+          <div
+            id="text-al"
+            class="absolute top-0 left-0 font-bold text-black uppercase opacity-0"
+            style="font-size: 1.5rem; letter-spacing: 0.05em; line-height: 0.9;"
+          >
+            <div>Galeria</div>
+            <div>Kombëtare</div>
+            <div>e Arteve</div>
+          </div>
         </div>
       </div>
     </div>
@@ -62,7 +64,6 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
   #text-en,
   #text-al {
     font-family: "Roboto Condensed", "Arial Narrow", sans-serif;
-    line-height: 1;
   }
 </style>
 
