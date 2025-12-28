@@ -152,8 +152,6 @@ h6 {
 }
 
 @theme {
-    font-serifs: {
-        kufam: 'Kufam, system-ui, sans-serif',
-            accunthisa: 'Accunthisa, Kufam, system-ui, sans-serif',
-    }
+    --font-kufam: "Kufam", sans-serif;
+    --font-accunthisa: "Accunthisa", "Kufam", sans-serif;
 }
