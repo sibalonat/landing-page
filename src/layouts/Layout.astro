@@ -42,30 +42,32 @@ import kufamFont from "../styles/fonts/kufam.woff2";
   >
     <main class="flex-1">
       <!-- ~65vh hero with golden-ratio inner box -->
-      <section class="min-h-[65vh] flex items-center justify-center relative">
-        <div class="relative w-full max-w-5xl aspect-[1.618] pt-8">
+      <section
+        class="min-h-[65vh] flex items-center justify-center relative px-4 sm:px-6"
+      >
+        <div class="relative w-full max-w-5xl aspect-[1.618] pt-4 sm:pt-8">
           <!-- Logos injected by page -->
           <slot name="logos" />
 
           <!-- Coming soon + animated email -->
           <div
-            class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center space-y-2"
+            class="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 text-center space-y-1 sm:space-y-2 w-full px-4"
           >
             <p
               id="coming-soon-text"
-              class="text-xl font-kufam uppercase sm:text-6xl font-semibold"
+              class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-kufam uppercase font-semibold"
             >
             </p>
             <div id="contact-container" class="opacity-0">
               <span
                 id="contact-label"
-                class="inline-block text-sm sm:text-base uppercase tracking-wider opacity-0"
+                class="inline-block text-xs sm:text-sm md:text-base uppercase tracking-wider opacity-0"
                 >Contact</span
               >
               <a
                 id="email-link"
                 href={`mailto:${email}`}
-                class="block text-blue-600 dark:text-blue-400 font-medium mt-1 opacity-0"
+                class="block text-blue-600 dark:text-blue-400 font-medium mt-1 text-sm sm:text-base md:text-lg opacity-0 break-all"
               >
                 {email}
               </a>
@@ -114,13 +116,14 @@ import kufamFont from "../styles/fonts/kufam.woff2";
             "+=0.5"
           );
 
-          // 3. Slide in "Contact" label from left with rotation
+          // 3. Slide in "Contact" label - reduced animation on mobile
+          const isMobile = window.innerWidth < 640;
           tl.fromTo(
             contactLabel,
             {
               opacity: 0,
-              x: -30,
-              rotation: -5,
+              x: isMobile ? -15 : -30,
+              rotation: isMobile ? 0 : -5,
             },
             {
               opacity: 1,
@@ -131,13 +134,13 @@ import kufamFont from "../styles/fonts/kufam.woff2";
             }
           );
 
-          // 4. Slide in email from right with slight bounce
+          // 4. Slide in email - reduced animation on mobile
           tl.fromTo(
             emailLink,
             {
               opacity: 0,
-              x: 30,
-              y: -10,
+              x: isMobile ? 15 : 30,
+              y: isMobile ? 0 : -10,
             },
             {
               opacity: 1,
@@ -149,11 +152,11 @@ import kufamFont from "../styles/fonts/kufam.woff2";
             "-=0.3"
           );
 
-          // 5. Gentle continuous pulse on email
+          // 5. Gentle continuous pulse on email - reduced on mobile
           tl.to(
             emailLink,
             {
-              scale: 1.05,
+              scale: isMobile ? 1.02 : 1.05,
               duration: 2,
               repeat: -1,
               yoyo: true,
