@@ -52,13 +52,14 @@ import kufamFont from "../styles/fonts/kufam.woff2";
             class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center space-y-2"
           >
             <p
-              class="text-xl font-kufam sm:text-6xl font-semibold opacity-0 animate-fade-in-up [animation-delay:4200ms]"
+              id="coming-soon-text"
+              class="text-xl font-kufam uppercase sm:text-6xl font-semibold"
             >
-              Coming soon
             </p>
             <a
+              id="email-link"
               href={`mailto:${email}`}
-              class="inline-block text-blue-600 dark:text-blue-400 font-medium opacity-0 animate-fade-in-up animate-pulse-slow [animation-delay:5000ms]"
+              class="inline-block text-blue-600 dark:text-blue-400 font-medium opacity-0"
             >
               {email}
             </a>
@@ -72,5 +73,45 @@ import kufamFont from "../styles/fonts/kufam.woff2";
         <slot />
       </section>
     </main>
+
+    <script>
+      import { gsap } from "gsap";
+      import { TextPlugin } from "gsap/TextPlugin";
+
+      gsap.registerPlugin(TextPlugin);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const comingSoonText = document.getElementById("coming-soon-text");
+        const emailLink = document.getElementById("email-link");
+
+        if (comingSoonText && emailLink) {
+          // Typing animation for "Coming soon"
+          gsap.to(comingSoonText, {
+            duration: 2,
+            text: "Coming soon",
+            delay: 4.2,
+            ease: "none",
+          });
+
+          // Fade in email with pulse
+          gsap.to(emailLink, {
+            opacity: 1,
+            duration: 0.8,
+            delay: 5,
+            ease: "power2.out",
+          });
+
+          // Pulse animation for email
+          gsap.to(emailLink, {
+            scale: 1.03,
+            duration: 1.8,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut",
+            delay: 5.8,
+          });
+        }
+      });
+    </script>
   </body>
 </html>
