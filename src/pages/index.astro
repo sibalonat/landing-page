@@ -1,22 +1,53 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import enLogo from "../assets/gka/en-logo.svg";
+import alLogo from "../assets/gka/al-logo.svg";
+import mtksLogo from "../assets/mtks/mtks-logo.svg";
 ---
 
 <Layout title="Home" description="Landing page">
-  <h1
-    slot="title"
-    class="text-2xl sm:text-3xl lg:text-5xl font-bold tracking-tight"
-  >
-    Astro
-  </h1>
+  <section class="min-h-[65vh] flex items-center justify-center relative">
+    <div class="relative w-full max-w-5xl aspect-[1.618]">
+      <!-- Logos block that starts centered, then moves to top-left -->
+      <div
+        class="group absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-8 animate-hero-move"
+      >
+        <div class="relative w-40 sm:w-52 h-40 sm:h-52">
+          <img
+            src={enLogo.src}
+            alt="GKA English logo"
+            class="absolute inset-0 w-full h-full object-contain animate-logo-en-out"
+          />
+          <img
+            src={alLogo.src}
+            alt="GKA Albanian logo"
+            class="absolute inset-0 w-full h-full object-contain animate-logo-al-in"
+          />
+        </div>
 
-  <p class="mt-4 text-base sm:text-lg lg:text-xl">
-    Tailwind classes make this responsive across breakpoints.
-  </p>
+        <img
+          src={mtksLogo.src}
+          alt="MTKS logo"
+          class="w-28 sm:w-36 h-auto opacity-0 animate-mtks-fade-in"
+        />
+      </div>
 
-  <div slot="grid">
-    <div class="rounded-lg border p-4">Card 1</div>
-    <div class="rounded-lg border p-4">Card 2</div>
-    <div class="rounded-lg border p-4">Card 3</div>
-  </div>
+      <!-- Coming soon + email -->
+      <div
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center space-y-2"
+      >
+        <p
+          class="text-xl sm:text-2xl font-semibold opacity-0 animate-fade-in-up [animation-delay:2600ms]"
+        >
+          Coming soon
+        </p>
+        <a
+          href="mailto:contact@example.com"
+          class="inline-block text-blue-600 dark:text-blue-400 font-medium opacity-0 animate-fade-in-up animate-pulse-slow [animation-delay:3400ms]"
+        >
+          contact@example.com
+        </a>
+      </div>
+    </div>
+  </section>
 </Layout>
