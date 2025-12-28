@@ -1,36 +1,96 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import enLogo from "../assets/gka/en-logo.svg";
-import alLogo from "../assets/gka/al-logo.svg";
+import redG from "../assets/gka/red-g.svg";
+import textEn from "../assets/gka/text-en.svg";
+import textAl from "../assets/gka/text-al.svg";
 import mtksLogo from "../assets/mtks/mtks-logo.svg";
 ---
 
 <Layout title="Home" description="Landing page" email="contact@example.com">
   <!-- Logos slot content -->
-  <div slot="logos" class="absolute inset-10">
-    <!-- EN→AL pair: start centered, then move to top-left -->
+  <div slot="logos" class="absolute inset-0">
+    <!-- GKA Logo Container -->
     <div
-      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-52 h-40 sm:h-52 animate-pair-to-top-left"
+      id="gka-logo-container"
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 sm:w-52"
     >
+      <!-- Static red G - always visible -->
       <img
-        src={enLogo.src}
-        alt="GKA English logo"
-        class="absolute inset-10 w-full h-full object-contain animate-logo-en-out"
+        src={redG.src}
+        alt=""
+        class="absolute inset-0 w-full h-auto object-contain"
       />
+
+      <!-- English text - fades out -->
       <img
-        src={alLogo.src}
-        alt="GKA Albanian logo"
-        class="absolute inset-10 w-full h-full object-contain animate-logo-al-in"
+        id="text-en"
+        src={textEn.src}
+        alt="National"
+        class="absolute inset-0 w-full h-auto object-contain"
+      />
+
+      <!-- Albanian text - fades in -->
+      <img
+        id="text-al"
+        src={textAl.src}
+        alt="Kombëtare"
+        class="absolute inset-0 w-full h-auto object-contain opacity-0"
       />
     </div>
 
-    <!-- MTKS: fade in at top-right after the pair moves -->
+    <!-- MTKS logo -->
     <img
+      id="mtks-logo"
       src={mtksLogo.src}
       alt="MTKS logo"
-      class="absolute top-0 right-0 w-28 sm:w-36 h-auto opacity-0 animate-mtks-fade-in [animation-delay:2400ms]"
+      class="absolute top-8 right-4 w-28 sm:w-36 h-auto opacity-0"
     />
   </div>
-
-  <!-- Optional extra content goes here -->
 </Layout>
+
+<script>
+  import { gsap } from "gsap";
+
+  // Wait for DOM to be ready
+  document.addEventListener("DOMContentLoaded", () => {
+    const timeline = gsap.timeline();
+
+    // 1. Fade out English text and fade in Albanian text
+    timeline
+      .to("#text-en", {
+        opacity: 0,
+        duration: 0.8,
+        delay: 1.5,
+      })
+      .to(
+        "#text-al",
+        {
+          opacity: 1,
+          duration: 0.8,
+        },
+        "-=0.4"
+      ); // Overlap by 0.4s for smooth transition
+
+    // 2. Move the entire GKA logo container to top-left
+    timeline.to("#gka-logo-container", {
+      left: "1rem",
+      top: "2rem",
+      x: 0,
+      y: 0,
+      scale: 0.8,
+      duration: 1,
+      ease: "power2.inOut",
+      delay: 0.5,
+    });
+
+    // 3. Fade in MTKS logo at top-right
+    timeline.to(
+      "#mtks-logo",
+      {
+        opacity: 1,
+        duration: 0.8,
+      },
+      "-=0.5"
+    ); // Start 0.5s before previous animation ends
+  });
+</script>
