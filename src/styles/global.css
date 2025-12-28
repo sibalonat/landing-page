@@ -34,7 +34,8 @@ h6 {
     font-family: "Accunthisa", "Kufam", system-ui, sans-serif;
 }
 
-/* ...existing code... */
+/* Import Roboto Condensed for logo text matching */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
 /* EN→AL crossfade */
 @keyframes logo-en-out {
@@ -151,4 +152,5 @@ h6 {
 @theme {
     --font-kufam: "Kufam", sans-serif;
     --font-accunthisa: "Accunthisa", "Kufam", sans-serif;
+    --font-roboto-condensed: 'Roboto Condensed', sans-serif;
 }
