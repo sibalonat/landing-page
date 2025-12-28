@@ -1,3 +1,5 @@
+/* Import Roboto Condensed for logo text matching */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 @import "tailwindcss";
 
 /* Custom fonts */
@@ -34,8 +36,6 @@ h6 {
     font-family: "Accunthisa", "Kufam", system-ui, sans-serif;
 }
 
-/* Import Roboto Condensed for logo text matching */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
 /* EN→AL crossfade */
 @keyframes logo-en-out {
