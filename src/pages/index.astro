@@ -9,6 +9,29 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
   description="Faqja zyrtare e Galerisë Kombëtare të Arteve në Shqipëri."
   email="info@galeriakombetare.gov.al"
 >
+  <!-- Add structured data for SEO -->
+  <script type="application/ld+json" slot="head">
+    {
+      "@context": "https://schema.org",
+      "@type": "Museum",
+      "name": "Galeria Kombëtare e Arteve",
+      "alternateName": "National Gallery of Arts of Albania",
+      "url": "https://galeriakombetare.gov.al",
+      "logo": "https://galeriakombetare.gov.al/logo.png",
+      "image": "https://galeriakombetare.gov.al/og-image.jpg",
+      "description": "The National Gallery of Arts of Albania",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "AL",
+        "addressLocality": "Tirana"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@galeriakombetare.gov.al",
+        "contactType": "Customer Service"
+      }
+    }
+  </script>
   <!-- Logos slot content -->
   <div slot="logos" class="absolute inset-4 sm:inset-8 md:inset-12">
     <!-- GKA Logo Container -->
