@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import redG from "../assets/gka/red-g.svg";
 import mtksLogo from "../assets/mtks/mtks-logo.svg";
+const baseUrl = "https://galeriakombetare.gov.al";
 ---
 
 <Layout
@@ -10,28 +11,51 @@ import mtksLogo from "../assets/mtks/mtks-logo.svg";
   email="info@galeriakombetare.gov.al"
 >
   <!-- Add structured data for SEO -->
-  <script type="application/ld+json" slot="head">
-    {
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Museum",
-      "name": "Galeria Kombëtare e Arteve",
-      "alternateName": "National Gallery of Arts of Albania",
-      "url": "https://galeriakombetare.al",
-      "logo": "https://galeriakombetare.al/logo.png",
-      "image": "https://galeriakombetare.al/og-image.jpg",
-      "description": "The National Gallery of Arts of Albania",
-      "address": {
+      name: "Galeria Kombëtare e Arteve",
+      alternateName: "National Gallery of Arts of Albania",
+      url: baseUrl,
+      logo: `${baseUrl}${redG.src}`,
+      image: `${baseUrl}/og-image.jpg`,
+      description:
+        "The National Gallery of Arts of Albania - showcasing Albanian and international art, contemporary exhibitions, and cultural heritage.",
+      address: {
         "@type": "PostalAddress",
-        "addressCountry": "AL",
-        "addressLocality": "Tirana"
+        streetAddress: "Bulevardi Dëshmorët e Kombit",
+        addressLocality: "Tirana",
+        postalCode: "1001",
+        addressCountry: "AL",
       },
-      "contactPoint": {
+      contactPoint: {
         "@type": "ContactPoint",
-        "email": "info@galeriakombetare.gov.al",
-        "contactType": "Customer Service"
-      }
-    }
-  </script>
+        email: "info@galeriakombetare.gov.al",
+        contactType: "Customer Service",
+        availableLanguage: ["Albanian", "English"],
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "10:00",
+        closes: "18:00",
+      },
+      sameAs: [
+        "https://www.facebook.com/galeriakombetare",
+        "https://www.instagram.com/galeriakombetare",
+      ],
+    })}
+  />
   <!-- Logos slot content -->
   <div slot="logos" class="absolute inset-4 sm:inset-8 md:inset-12">
     <!-- GKA Logo Container -->
