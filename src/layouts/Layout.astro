@@ -77,6 +77,53 @@ import kufamFont from "../styles/fonts/kufam.woff2";
         </div>
       </section>
 
+      <!-- Job Posting Section -->
+      <section
+        id="job-posting"
+        class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+      >
+        <div
+          class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
+        >
+          <h2
+            class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-kufam uppercase text-center mb-6 sm:mb-8 leading-tight"
+          >
+            Thirrje për aplikim si këshilltar i jashtëm pranë drejtorit të
+            Galerisë Kombëtare të Arteve
+          </h2>
+
+          <div class="flex flex-col items-center space-y-4">
+            <p
+              class="text-sm sm:text-base text-center text-gray-600 dark:text-gray-400 max-w-2xl"
+            >
+              Për më shumë informacion mbi pozicionin dhe kërkesat për aplikim,
+              ju lutemi shkarkoni dokumentin e plotë.
+            </p>
+
+            <a
+              href="/documents/thirrje-keshilltar.pdf"
+              download
+              class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-medium text-sm sm:text-base uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+              Shkarko Dokumentin
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section
         class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
       >
@@ -114,7 +161,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               opacity: 1,
               duration: 0.3,
             },
-            "+=0.5"
+            "+=0.5",
           );
 
           // 3. Slide in "Contact" label - reduced animation on mobile
@@ -132,7 +179,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               rotation: 0,
               duration: 0.6,
               ease: "back.out(1.7)",
-            }
+            },
           );
 
           // 4. Slide in email - reduced animation on mobile
@@ -150,7 +197,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               duration: 0.8,
               ease: "elastic.out(1, 0.5)",
             },
-            "-=0.3"
+            "-=0.3",
           );
 
           // 5. Gentle continuous pulse on email - reduced on mobile
@@ -163,7 +210,19 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               yoyo: true,
               ease: "sine.inOut",
             },
-            "+=0.5"
+            "+=0.5",
+          );
+
+          // 6. Fade in job posting section
+          tl.to(
+            "#job-posting",
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power2.out",
+            },
+            "-=1.5",
           );
         }
       });
