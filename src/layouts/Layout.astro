@@ -41,10 +41,12 @@ import kufamFont from "../styles/fonts/kufam.woff2";
   <body
     class="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100"
   >
-    <main class="flex-1">
-      <!-- ~65vh hero with golden-ratio inner box -->
+    <main class="flex-1 flex flex-col">
+      <!-- ~65vh hero with golden-ratio inner box. Stays at full size and
+           scrolls out of view normally as the user scrolls past it. -->
       <section
-        class="min-h-[65vh] flex items-center justify-center relative px-4 sm:px-6"
+        id="hero-section"
+        class="order-1 min-h-[65vh] flex items-center justify-center relative px-4 sm:px-6"
       >
         <div class="relative w-full max-w-5xl aspect-[1.618] pt-4 sm:pt-8">
           <!-- Logos injected by page -->
@@ -52,6 +54,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
 
           <!-- Coming soon + animated email -->
           <div
+            id="hero-bottom-content"
             class="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 text-center space-y-1 sm:space-y-2 w-full px-4"
           >
             <p
@@ -80,7 +83,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
       <!-- Job Posting Section -->
       <section
         id="job-posting"
-        class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+        class="order-3 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <div
           class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
@@ -125,10 +128,33 @@ import kufamFont from "../styles/fonts/kufam.woff2";
       </section>
 
       <section
-        class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
+        id="open-call-section"
+        class="order-2 hidden relative z-10 bg-white dark:bg-gray-900 -mt-[28vh] sm:-mt-[32vh] lg:-mt-[38vh] mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
       >
         <slot />
       </section>
+
+      <!-- Compact footer: site-under-construction (left) + contact (right) -->
+      <footer
+        id="site-footer"
+        class="order-last hidden relative z-10 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-auto"
+      >
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-6 text-center"
+        >
+          <span
+            class="font-kufam uppercase font-semibold text-sm sm:text-base md:text-lg"
+          >
+            Site Under Construction
+          </span>
+          <a
+            href={`mailto:${email}`}
+            class="font-accunthisa text-sm sm:text-base text-slate-700 dark:text-slate-300 hover:underline break-all"
+          >
+            {email}
+          </a>
+        </div>
+      </footer>
     </main>
 
     <script>
@@ -146,10 +172,10 @@ import kufamFont from "../styles/fonts/kufam.woff2";
         if (comingSoonText && contactContainer && contactLabel && emailLink) {
           const tl = gsap.timeline();
 
-          // 1. Typing animation for "Coming soon"
+          // 1. Typing animation for "Site Under Construction"
           tl.to(comingSoonText, {
             duration: 2,
-            text: "Coming soon",
+            text: "Site Under Construction",
             delay: 4.2,
             ease: "none",
           });
@@ -213,17 +239,73 @@ import kufamFont from "../styles/fonts/kufam.woff2";
             "+=0.5",
           );
 
-          // 6. Fade in job posting section
-          tl.to(
-            "#job-posting",
-            {
-              opacity: 1,
+          // 6. After load + ~5s, fade out only the "Site Under Construction"
+          // text + email from inside the hero. The hero/logos never resize
+          // or move — the user simply scrolls past the hero to see the new
+          // sections below.
+          const heroBottomContent = document.getElementById("hero-bottom-content");
+          const openCallSection = document.getElementById("open-call-section");
+          const siteFooter = document.getElementById("site-footer");
+          const jobPosting = document.getElementById("job-posting");
+
+          if (
+            heroBottomContent &&
+            openCallSection &&
+            siteFooter &&
+            jobPosting
+          ) {
+            const transitionTl = gsap.timeline({ delay: 13 });
+
+            // Phase 1: Fade out only the text + email. Logos and hero stay put.
+            transitionTl.to(heroBottomContent, {
+              opacity: 0,
+              duration: 0.7,
+              ease: "power2.in",
+            });
+
+            // Phase 2: Reveal the new sections (open-call, job-posting, footer).
+            transitionTl.add(() => {
+              heroBottomContent.style.display = "none";
+              openCallSection.classList.remove("hidden");
+              siteFooter.classList.remove("hidden");
+
+              gsap.set(openCallSection, { opacity: 0, y: 30 });
+              gsap.set(jobPosting, { opacity: 0, y: 30 });
+              gsap.set(siteFooter, { opacity: 0, y: 30 });
+            });
+
+            // Phase 3: open-call (THIRRJE) slides + fades in first.
+            transitionTl.to(openCallSection, {
               y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-            },
-            "-=1.5",
-          );
+              opacity: 1,
+              duration: 1,
+              ease: "power3.out",
+            });
+
+            // Phase 4: job-posting follows, slightly overlapping.
+            transitionTl.to(
+              jobPosting,
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.9,
+                ease: "power3.out",
+              },
+              "-=0.4",
+            );
+
+            // Phase 5: footer settles into place last.
+            transitionTl.to(
+              siteFooter,
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+              },
+              "-=0.4",
+            );
+          }
         }
       });
     </script>
