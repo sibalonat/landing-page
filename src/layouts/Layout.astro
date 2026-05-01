@@ -174,9 +174,9 @@ import kufamFont from "../styles/fonts/kufam.woff2";
 
           // 1. Typing animation for "Site Under Construction"
           tl.to(comingSoonText, {
-            duration: 2,
+            duration: 1.2,
             text: "Site Under Construction",
-            delay: 4.2,
+            delay: 0.3,
             ease: "none",
           });
 
@@ -254,7 +254,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
             siteFooter &&
             jobPosting
           ) {
-            const transitionTl = gsap.timeline({ delay: 13 });
+            const transitionTl = gsap.timeline({ delay: 3.5 });
 
             // Phase 1: Fade out only the text + email. Logos and hero stay put.
             transitionTl.to(heroBottomContent, {
