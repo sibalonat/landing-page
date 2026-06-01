@@ -83,7 +83,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
       <!-- Job Posting Section -->
       <section
         id="job-posting"
-        class="order-3 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+        class="order-4 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <div
           class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
@@ -105,6 +105,63 @@ import kufamFont from "../styles/fonts/kufam.woff2";
 
             <a
               href="/documents/thirrje-keshilltar.pdf"
+              download
+              class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-medium text-sm sm:text-base uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+              Shkarko Dokumentin
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Maintenance Worker (Sanitar) Job Posting Section -->
+      <section
+        id="sanitar-posting"
+        class="order-3 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+      >
+        <div
+          class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
+        >
+          <h2
+            class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-kufam uppercase text-center mb-6 sm:mb-8 leading-tight"
+          >
+            Njoftim për vend të lirë pune – Punonjës Mirëmbajtje (Sanitar)
+          </h2>
+
+          <div class="flex flex-col items-center space-y-4">
+            <div
+              class="text-gray-600 dark:text-gray-400 max-w-2xl space-y-4 text-center"
+            >
+              <p class="text-sm sm:text-base">
+                Punonjës Mirëmbajtje (Sanitar) në Sektorin e Sigurisë dhe
+                Mirëmbajtjes në GKA, me afat të caktuar.
+              </p>
+              <p
+                class="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200"
+              >
+                Aplikimet do të pranohen deri më datë 09.06.2026.
+              </p>
+              <p class="text-sm sm:text-base">
+                Për më shumë informacion mbi pozicionin dhe kërkesat për
+                aplikim, ju lutemi shkarkoni dokumentin e plotë.
+              </p>
+            </div>
+
+            <a
+              href="/documents/Njoftim per shpalljen e vendit te lire te punes - Punonjes Mirembajtje_GKA.pdf"
               download
               class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-medium text-sm sm:text-base uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
@@ -247,12 +304,14 @@ import kufamFont from "../styles/fonts/kufam.woff2";
           const openCallSection = document.getElementById("open-call-section");
           const siteFooter = document.getElementById("site-footer");
           const jobPosting = document.getElementById("job-posting");
+          const sanitarPosting = document.getElementById("sanitar-posting");
 
           if (
             heroBottomContent &&
             openCallSection &&
             siteFooter &&
-            jobPosting
+            jobPosting &&
+            sanitarPosting
           ) {
             const transitionTl = gsap.timeline({ delay: 3.5 });
 
@@ -270,6 +329,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               siteFooter.classList.remove("hidden");
 
               gsap.set(openCallSection, { opacity: 0, y: 30 });
+              gsap.set(sanitarPosting, { opacity: 0, y: 30 });
               gsap.set(jobPosting, { opacity: 0, y: 30 });
               gsap.set(siteFooter, { opacity: 0, y: 30 });
             });
@@ -282,7 +342,19 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               ease: "power3.out",
             });
 
-            // Phase 4: job-posting follows, slightly overlapping.
+            // Phase 4: sanitar job posting follows, slightly overlapping.
+            transitionTl.to(
+              sanitarPosting,
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.9,
+                ease: "power3.out",
+              },
+              "-=0.4",
+            );
+
+            // Phase 5: job-posting (këshilltar) follows, slightly overlapping.
             transitionTl.to(
               jobPosting,
               {
@@ -294,7 +366,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               "-=0.4",
             );
 
-            // Phase 5: footer settles into place last.
+            // Phase 6: footer settles into place last.
             transitionTl.to(
               siteFooter,
               {
