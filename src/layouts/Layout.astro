@@ -80,10 +80,76 @@ import kufamFont from "../styles/fonts/kufam.woff2";
         </div>
       </section>
 
+      <!-- Open Call Results Section -->
+      <section
+        id="results-section"
+        class="order-2 hidden relative z-10 bg-white dark:bg-gray-900 -mt-[28vh] sm:-mt-[32vh] lg:-mt-[38vh] mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
+      >
+        <article
+          class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
+        >
+          <p
+            class="text-xs sm:text-sm font-kufam uppercase tracking-wider text-center text-gray-500 dark:text-gray-400 mb-2"
+          >
+            Njoftim
+          </p>
+          <h2
+            class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-kufam uppercase text-center mb-6 sm:mb-8 leading-tight"
+          >
+            Rezultatet e Thirrjes së Hapur – Fondi i Krijimtarisë 2026
+          </h2>
+
+          <div class="flex flex-col items-center space-y-4">
+            <div
+              class="text-gray-600 dark:text-gray-400 max-w-2xl space-y-4 text-center"
+            >
+              <p
+                class="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300"
+              >
+                Galeria Kombëtare e Arteve shpall listën e përfituesve të
+                mbështetjes financiare për projekt-propozimet e dorëzuara në
+                kuadër të Thirrjes së Hapur „Fondi i Krijimtarisë 2026”.
+              </p>
+              <p
+                class="text-sm sm:text-base font-semibold text-gray-800 dark:text-gray-200"
+              >
+                Numri përfundimtar i projekteve që do të mbështeten financiarisht
+                nga Galeria Kombëtare e Arteve në kuadër të Thirrjes së Hapur
+                „Fondi i Krijimtarisë 2026” është 16 (gjashtëmbëdhjetë).
+              </p>
+              <p class="text-sm sm:text-base">
+                Njoftimin e plotë me fituesit do ta gjeni në dokumentin më poshtë.
+              </p>
+            </div>
+
+            <a
+              href="/documents/njoftim-rezultatet-fondi-krijimtarise-2026.pdf"
+              download
+              class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-medium text-sm sm:text-base uppercase tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+              Shkarko Njoftimin
+            </a>
+          </div>
+        </article>
+      </section>
+
       <!-- Job Posting Section -->
       <section
         id="job-posting"
-        class="order-4 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+        class="order-5 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <div
           class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
@@ -130,7 +196,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
       <!-- Maintenance Worker (Sanitar) Job Posting Section -->
       <section
         id="sanitar-posting"
-        class="order-3 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+        class="order-4 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <div
           class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
@@ -186,7 +252,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
 
       <section
         id="open-call-section"
-        class="order-2 hidden relative z-10 bg-white dark:bg-gray-900 -mt-[28vh] sm:-mt-[32vh] lg:-mt-[38vh] mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
+        class="order-3 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <slot />
       </section>
@@ -301,6 +367,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
           // or move — the user simply scrolls past the hero to see the new
           // sections below.
           const heroBottomContent = document.getElementById("hero-bottom-content");
+          const resultsSection = document.getElementById("results-section");
           const openCallSection = document.getElementById("open-call-section");
           const siteFooter = document.getElementById("site-footer");
           const jobPosting = document.getElementById("job-posting");
@@ -308,6 +375,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
 
           if (
             heroBottomContent &&
+            resultsSection &&
             openCallSection &&
             siteFooter &&
             jobPosting &&
@@ -322,27 +390,40 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               ease: "power2.in",
             });
 
-            // Phase 2: Reveal the new sections (open-call, job-posting, footer).
+            // Phase 2: Reveal the new sections (results, open-call, job-posting, footer).
             transitionTl.add(() => {
               heroBottomContent.style.display = "none";
-              openCallSection.classList.remove("hidden");
+              resultsSection.classList.remove("hidden");
               siteFooter.classList.remove("hidden");
 
+              gsap.set(resultsSection, { opacity: 0, y: 30 });
               gsap.set(openCallSection, { opacity: 0, y: 30 });
               gsap.set(sanitarPosting, { opacity: 0, y: 30 });
               gsap.set(jobPosting, { opacity: 0, y: 30 });
               gsap.set(siteFooter, { opacity: 0, y: 30 });
             });
 
-            // Phase 3: open-call (THIRRJE) slides + fades in first.
-            transitionTl.to(openCallSection, {
+            // Phase 3: results (NJOFTIM) slides + fades in first.
+            transitionTl.to(resultsSection, {
               y: 0,
               opacity: 1,
               duration: 1,
               ease: "power3.out",
             });
 
-            // Phase 4: sanitar job posting follows, slightly overlapping.
+            // Phase 4: open-call (THIRRJE) follows, slightly overlapping.
+            transitionTl.to(
+              openCallSection,
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.9,
+                ease: "power3.out",
+              },
+              "-=0.4",
+            );
+
+            // Phase 5: sanitar job posting follows, slightly overlapping.
             transitionTl.to(
               sanitarPosting,
               {
@@ -354,7 +435,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               "-=0.4",
             );
 
-            // Phase 5: job-posting (këshilltar) follows, slightly overlapping.
+            // Phase 6: job-posting (këshilltar) follows, slightly overlapping.
             transitionTl.to(
               jobPosting,
               {
@@ -366,7 +447,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               "-=0.4",
             );
 
-            // Phase 6: footer settles into place last.
+            // Phase 7: footer settles into place last.
             transitionTl.to(
               siteFooter,
               {
