@@ -83,7 +83,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
       <!-- Open Call Results Section -->
       <section
         id="results-section"
-        class="order-2 hidden relative z-10 bg-white dark:bg-gray-900 -mt-[28vh] sm:-mt-[32vh] lg:-mt-[38vh] mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
+        class="order-3 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <article
           class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
@@ -149,7 +149,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
       <!-- Job Posting Section -->
       <section
         id="job-posting"
-        class="order-5 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+        class="order-6 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <div
           class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
@@ -196,7 +196,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
       <!-- Këshilltar i Jashtëm – Njoftim për Publikim Section -->
       <section
         id="keshilltar-publikim"
-        class="order-6 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+        class="order-2 hidden relative z-10 bg-white dark:bg-gray-900 -mt-[28vh] sm:-mt-[32vh] lg:-mt-[38vh] mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16"
       >
         <div
           class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
@@ -257,7 +257,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
       <!-- Maintenance Worker (Sanitar) Job Posting Section -->
       <section
         id="sanitar-posting"
-        class="order-4 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+        class="order-5 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <div
           class="border-t border-gray-200 dark:border-gray-700 pt-8 sm:pt-12"
@@ -313,7 +313,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
 
       <section
         id="open-call-section"
-        class="order-3 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
+        class="order-4 relative z-10 bg-white dark:bg-gray-900 mx-auto max-w-4xl w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 opacity-0"
       >
         <slot />
       </section>
@@ -456,24 +456,36 @@ import kufamFont from "../styles/fonts/kufam.woff2";
             // Phase 2: Reveal the new sections (results, open-call, job-posting, footer).
             transitionTl.add(() => {
               heroBottomContent.style.display = "none";
-              resultsSection.classList.remove("hidden");
+              keshilltarPublikim.classList.remove("hidden");
               siteFooter.classList.remove("hidden");
 
+              gsap.set(keshilltarPublikim, { opacity: 0, y: 30 });
               gsap.set(resultsSection, { opacity: 0, y: 30 });
               gsap.set(openCallSection, { opacity: 0, y: 30 });
               gsap.set(sanitarPosting, { opacity: 0, y: 30 });
               gsap.set(jobPosting, { opacity: 0, y: 30 });
-              gsap.set(keshilltarPublikim, { opacity: 0, y: 30 });
               gsap.set(siteFooter, { opacity: 0, y: 30 });
             });
 
-            // Phase 3: results (NJOFTIM) slides + fades in first.
-            transitionTl.to(resultsSection, {
+            // Phase 3: këshilltar (njoftim për publikim) slides + fades in first.
+            transitionTl.to(keshilltarPublikim, {
               y: 0,
               opacity: 1,
               duration: 1,
               ease: "power3.out",
             });
+
+            // Phase 3b: results (NJOFTIM) follows, slightly overlapping.
+            transitionTl.to(
+              resultsSection,
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.9,
+                ease: "power3.out",
+              },
+              "-=0.4",
+            );
 
             // Phase 4: open-call (THIRRJE) follows, slightly overlapping.
             transitionTl.to(
@@ -511,19 +523,7 @@ import kufamFont from "../styles/fonts/kufam.woff2";
               "-=0.4",
             );
 
-            // Phase 7: këshilltar (njoftim për publikim) follows, slightly overlapping.
-            transitionTl.to(
-              keshilltarPublikim,
-              {
-                y: 0,
-                opacity: 1,
-                duration: 0.9,
-                ease: "power3.out",
-              },
-              "-=0.4",
-            );
-
-            // Phase 8: footer settles into place last.
+            // Phase 7: footer settles into place last.
             transitionTl.to(
               siteFooter,
               {
